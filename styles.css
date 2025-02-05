@@ -3,7 +3,7 @@ body{
   margin: 20px;
 }
 .currentText{
-  top: 0;
+  bottom: 0;
   width: 90%;
   position: fixed;
   background-color: white;
