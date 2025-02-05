@@ -2,7 +2,7 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   margin: 20px;
 }
-#latestParagraph{
+.latestParagraph{
   font-size: 20px;
   background-color: #fdff32;
 }
