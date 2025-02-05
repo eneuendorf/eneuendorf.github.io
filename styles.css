@@ -18,7 +18,7 @@ body{
   flex-direction: column;
   align-content: center;
 }
-button {
+.button {
   background-color: #0084CB; /* Briya Blue */
   border: none;
   color: white;
@@ -32,7 +32,7 @@ button {
   cursor: pointer;
   border-radius: 4px;
 }
-button:hover {
+.button:hover {
   background-color: #00A2E4; /* Briya blue #2 */
   color: white;
 }
