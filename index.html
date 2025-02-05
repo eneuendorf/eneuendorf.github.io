@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Paragraph</title>
+    <script>
+        async function fetchLatestParagraph() {
+            const apiUrl = "https://script.google.com/macros/s/AKfycbwVS-jRaCVRPnizC-cvn8iylzQMnUalKb-V80QCdxV0nKuOJhXsxGK-nn9PtE-LMK20/exec";  // Replace with your Web App URL
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                document.getElementById("latestParagraph").innerText = data.latestParagraph;
+            } catch (error) {
+                console.error("Error fetching paragraph:", error);
+                document.getElementById("latestParagraph").innerText = "Failed to load content.";
+            }
+        }
+        window.onload = fetchLatestParagraph;
+    </script>
+</head>
+<body>
+    <h2>Latest Paragraph from Google Doc</h2>
+    <p id="latestParagraph">Loading...</p>
+</body>
+</html>
