@@ -24,7 +24,7 @@
           }
       	//setTimeout(arguments.callee, 3000);
       }
-      var tid = setInterval(fetchLatestParagraph, 2000);
+      var tid = setInterval(fetchLatestParagraph, 5000);
       window.onload = fetchLatestParagraph;        
       function reload(){
         document.getElementById("refreshable").contentWindow.location.reload(true);
