@@ -8,7 +8,7 @@ async function fetchTranslations(lang) {
         let data = await response.json();
         var currentText = document.getElementById("latestParagraph");
 
-        let newText = data.lang.replace(/\n/g, "<br>");
+        let newText = data[lang].replace(/\n/g, "<br>");
 
         if (currentText.innerHTML !== newText) {
             if (currentText.innerHTML.trim() !== "") {  // Prevents leading <br>
