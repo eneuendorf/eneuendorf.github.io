@@ -38,6 +38,14 @@ body{
     flex-shrink: 1; /* Enables shrinking if necessary */
 }
 
+#corner_qr{
+  display: none;
+  height: 150px;
+  right: 20px;
+  z-index: 100;
+  position: fixed;
+}
+
 .mobile_icon{
   height: 50px;
   width: 50px;
