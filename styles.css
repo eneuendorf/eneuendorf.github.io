@@ -29,7 +29,7 @@ body{
 .qr{
   height: auto;
   max-width: 100%;
-  width: 190px;
+  width: 150px;
   margin: 0 0 40px 40px;
   border-radius: 20px;
   flex-shrink: 1;
