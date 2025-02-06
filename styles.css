@@ -29,6 +29,9 @@ body{
   border-radius: 20px;
   flex-shrink: 1;
 }
+a {
+  display: block; /* Ensures the entire div is clickable */
+}
 .mobile_icon{
   height: 50px;
   width: 50px;
