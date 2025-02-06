@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translations</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="./stylesheet" href="styles.css">
+    <script src="./script.js"></script>
+</head>
+<body>
+    <h2 id="title">Loading...</h2>
+    <p id="latestParagraph"></p>
+    <p id="transcript"></p>
+
+    <script>
+        // Define page titles for different languages
+        const titles = {
+            spanish: "Traducción a Español",
+            arabic: "الترجمة إلى العربية",
+            french: "Traduction en Français",
+            german: "Übersetzung ins Deutsche"
+        };
+
+        // Get language from URL parameter (default to Spanish)
+        const urlParams = new URLSearchParams(window.location.search);
+        const language = urlParams.get("lang") || "spanish";
+
+        // Set the page title dynamically
+        document.getElementById("title").innerText = titles[language] || "Translation";
+
+        // Call the function to fetch translations (same as before)
+        fetchTranslations();
+    </script>
+</body>
+</html>
