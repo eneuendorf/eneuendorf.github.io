@@ -29,7 +29,7 @@ async function fetchTranslations(lang) {
 var tid = setInterval(fetchTranslations, 3000);
 window.onload = fetchTranslations;
 
-function showQR()() {
+function showQR() {
     if (document.getElementById("corner_qr").style.display == "none"){
         document.getElementById("corner_qr").style.display = "block";
     } else {
