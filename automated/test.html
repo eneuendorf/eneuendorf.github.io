@@ -32,7 +32,7 @@
         const language = urlParams.get("lang") || "spanish";
 
         // Set the page title dynamically
-        document.getElementById("title").innerText = titles[language] || "Translation";
+        document.title = titles[language] || "Translation";
       // Fetch translations every 3 seconds
         var tid = setInterval(() => fetchTranslations(language), 3000); 
       window.onload = () => fetchTranslations(language); 
