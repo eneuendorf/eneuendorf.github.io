@@ -14,16 +14,18 @@ body{
 .qr{
   height: 200px;
   width: 200px;
-  left: 50%;
+  margin-left: 20%;
+  border-radius: 20px;
 }
-.mobile_icon{
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  border: 5px solid #0084CB;
-  z-index: 100;
-  float: left;
-  position: absolute;
+.mobile_icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 5px solid #0084CB;
+    z-index: 100;
+    position: absolute;
+    top: 10px;  /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
 }
 #anchor {
   overflow-anchor: auto;
