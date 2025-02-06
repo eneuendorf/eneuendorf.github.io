@@ -39,6 +39,7 @@ body{
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: row;
 }
 .button:hover {
   background-color: #00A2E4; /* Briya blue #2 */
