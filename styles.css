@@ -7,9 +7,6 @@ body{
     .mobile_icon {
         display: none;
     }
-    .mobile_icon_right {
-        display: none;
-    }  
 }
 
 .currentText{
@@ -95,15 +92,16 @@ body{
   background-color: #0084CB; /* Briya Blue */
   border: none;
   color: white;
-  padding: 16px 32px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 20px;
-  margin: 15px 8px;
+  margin: 5px 5px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 4px;
+  flex-grow: 1;
 }
 #home{
   background-color: #FBAA19; /*briya orange*/
