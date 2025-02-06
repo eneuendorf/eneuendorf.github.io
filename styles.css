@@ -2,6 +2,11 @@ body{
   font-family: Arial, Helvetica, sans-serif;
   margin: 20px;
 }
+@media (max-width: 400px) {
+    .mobile_icon {
+        display: none;
+    }
+}
 .currentText{
   bottom: 0;
   width: 90%;
