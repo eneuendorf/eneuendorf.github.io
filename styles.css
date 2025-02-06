@@ -11,6 +11,20 @@ body{
   /*z-index: 99;*/
   /*float: left;*/
 }
+.qr{
+  height: 200px;
+  width: 200px;
+  left: 50%;
+}
+.mobile_icon{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 5px solid #0084CB;
+  z-index: 100;
+  float: left;
+  position: absolute;
+}
 #anchor {
   overflow-anchor: auto;
   height: 1px;
