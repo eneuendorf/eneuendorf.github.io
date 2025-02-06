@@ -7,6 +7,7 @@ async function fetchTranslations(lang) {
         let response = await fetch(scriptUrl);
         let data = await response.json();
         var currentText = document.getElementById("latestParagraph");
+        var anchor = document.getElementById('anchor');
 
         let newText = data[lang].replace(/\n/g, "<br>");
 
@@ -15,6 +16,7 @@ async function fetchTranslations(lang) {
                 document.getElementById("transcript").innerHTML += currentText.innerHTML + "<br>";
             }
             currentText.innerHTML = newText;
+            anchor.scrollIntoView({behavior:"smooth"});
         } else {
             console.log("same");
         } 
