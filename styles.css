@@ -51,8 +51,7 @@ body{
   border-radius: 50%;
   border: 5px solid #0084CB;
   z-index: 100;
-  float: right;
-  position: relative;
+  position: absolute;
 }
 #anchor {
   overflow-anchor: auto;
