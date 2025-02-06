@@ -32,7 +32,9 @@ window.onload = fetchTranslations;
 function showQR() {
     if (document.getElementById("corner_qr").style.display == "none"){
         document.getElementById("corner_qr").style.display = "block";
+        document.getElementById("mobile_icon_right").style.display = "none";
     } else {
         document.getElementById("corner_qr").style.display = "none";
+        document.getElementById("mobile_icon_right").style.display = "block";
     }
 }
