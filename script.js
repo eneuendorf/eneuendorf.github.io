@@ -29,10 +29,10 @@ async function fetchTranslations(lang) {
 var tid = setInterval(fetchTranslations, 3000);
 window.onload = fetchTranslations;
 
-function changeImage() {
-    if (document.getElementById("corner_qr").src == "mobile_icon.jpg"){
-        document.getElementById("corner_qr").src = "qr.png";
+function showQR()() {
+    if (document.getElementById("corner_qr").style.display == "none"){
+        document.getElementById("corner_qr").style.display = "block";
     } else {
-        document.getElementById("corner_qr").src = "mobile_icon.jpg";
+        document.getElementById("corner_qr").style.display = "none";
     }
 }
