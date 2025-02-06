@@ -28,3 +28,11 @@ async function fetchTranslations(lang) {
 // Fetch translations every 3 seconds
 var tid = setInterval(fetchTranslations, 3000);
 window.onload = fetchTranslations;
+
+function changeImage() {
+    if (document.getElementById("corner_qr").src == "mobile_icon.jpg"){
+        document.getElementById("corner_qr").src = "qr.png";
+    } else {
+        document.getElementById("corner_qr").src = "mobile_icon.jpg";
+    }
+}
