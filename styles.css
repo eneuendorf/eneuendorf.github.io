@@ -46,8 +46,8 @@ body{
   border-radius: 50%;
   border: 5px solid #0084CB;
   z-index: 100;
-  float: right;
-  position: absolute;
+  /*float: right;
+  position: absolute;*/
 }
 .mobile_icon_right{
   height: 50px;
