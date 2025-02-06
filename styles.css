@@ -41,6 +41,7 @@ body{
 .mobile_icon{
   height: 50px;
   width: 50px;
+  right: 20px;
   border-radius: 50%;
   border: 5px solid #0084CB;
   z-index: 100;
