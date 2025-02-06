@@ -11,21 +11,32 @@ body{
   /*z-index: 99;*/
   /*float: left;*/
 }
-.qr{
-  height: 200px;
-  width: 200px;
-  margin-left: 20%;
-  border-radius: 20px;
+.qr_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*flex-wrap: wrap;*/ 
+  flex-direction: row;
+  gap: 20px; /* Adds spacing between QR codes */
+  max-width: 100%; /* Prevents overflow */
 }
-.mobile_icon {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    border: 5px solid #0084CB;
-    z-index: 100;
-    position: absolute;
-    top: 10px;  /* Adjust as needed */
-    left: 10px; /* Adjust as needed */
+
+.qr{
+  height: auto;
+  max-width: 100%;
+  width: 200px;
+  margin: 0 0 40px 40px;
+  border-radius: 20px;
+  flex-shrink: 1;
+}
+.mobile_icon{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 5px solid #0084CB;
+  z-index: 100;
+  float: left;
+  position: absolute;
 }
 #anchor {
   overflow-anchor: auto;
@@ -84,4 +95,9 @@ body{
   bottom: 20px;
   right: 20px;
   z-index: 100;
+  outline: 5px solid white;
+}
+#home img{
+  height: 32px;
+  width: 32px;
 }
