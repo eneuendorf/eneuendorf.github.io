@@ -7,6 +7,9 @@ body{
     .mobile_icon {
         display: none;
     }
+    .mobile_icon_right {
+        display: none;
+    }  
 }
 
 .currentText{
