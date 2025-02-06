@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Live Translation</title>
+</head>
+<body>
+    <div class="currentText">
+      <hr>
+      <p id="latestParagraph"></p>
+    </div>
+    
+    <div class="transcriptBox">
+      <p id="transcript"></p>
+    </div>
+    <div id="anchor"></div>    
+    <script src='script.js' type='text/javascript' ></script>
+    <script>
+        // Define page titles for different languages
+        const titles = {
+            spanish: "Traducción a Español",
+            arabic: "الترجمة إلى العربية",
+            amharic: "የአማርኛ ትርጉም"
+        };
+
+        // Get language from URL parameter (default to Spanish)
+        const urlParams = new URLSearchParams(window.location.search);
+        const language = urlParams.get("lang") || "spanish";
+
+        // Set the page title dynamically
+        document.title = titles[language] || "Translation";
+      // Fetch translations every 3 seconds
+        var tid = setInterval(() => fetchTranslations(language), 3000); 
+      window.onload = () => fetchTranslations(language); 
+    </script>
+</body>
+</html>
