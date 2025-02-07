@@ -11,7 +11,7 @@ body{
         display: none;
     }  
 }
-a:hover{
+.clickable:hover{
   cursor: pointer;
 }
 .currentText{
