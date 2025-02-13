@@ -1,40 +1,38 @@
-// URL of your Google Apps Script Web App
 const scriptUrl = "https://script.google.com/macros/s/AKfycbzrZ_v6l2Ff18cEcfrPZ29lDqzeufnADUm0ydNNNG2TqyuID3QG3Ey7FhDjbqDt47FiTw/exec";
 
-// Function to fetch and display translations
-async function fetchTranslations(lang) {
+let lastTranslations = null; // Stores the previous translation to avoid unnecessary updates
+
+async function fetchTranslations() {
     try {
-        let response = await fetch(scriptUrl);
-        let data = await response.json();
-        var currentText = document.getElementById("latestParagraph");
-        var anchor = document.getElementById('anchor');
+        const urlParams = new URLSearchParams(window.location.search);
+        const language = urlParams.get("lang") || "spanish";
 
-        let newText = data[lang].replace(/\n/g, "<br>");
+        const response = await fetch(scriptUrl);
+        const newTranslations = await response.json();
 
-        if (currentText.innerHTML !== newText) {
-            if (currentText.innerHTML.trim() !== "") {  // Prevents leading <br>
-                document.getElementById("transcript").innerHTML += currentText.innerHTML + "<br>";
+        if (!newTranslations[language]) {
+            console.error("Language not found in translations:", language);
+            return;
+        }
+
+        let newText = newTranslations[language].replace(/\n/g, "<br>");
+        let currentText = document.getElementById("latestParagraph");
+        let transcript = document.getElementById("transcript");
+        let anchor = document.getElementById("anchor");
+
+        if (lastTranslations !== newText) {
+            if (currentText.innerHTML.trim() !== "") {
+                transcript.innerHTML += currentText.innerHTML + "<br>";
             }
             currentText.innerHTML = newText;
-            anchor.scrollIntoView({behavior:"smooth"});
-        } else {
-            console.log("same");
-        } 
+            anchor.scrollIntoView({ behavior: "smooth" });
+            lastTranslations = newText; // Update stored translation
+        }
     } catch (error) {
         console.error("Error fetching translations:", error);
     }
 }
 
-// Fetch translations every 3 seconds
-var tid = setInterval(fetchTranslations, 3000);
+// Fetch translations every 10 seconds instead of 3
+setInterval(fetchTranslations, 10000);
 window.onload = fetchTranslations;
-
-function showQR() {
-    if (document.getElementById("corner_qr").style.display == "block"){
-        document.getElementById("corner_qr").style.display = "none";
-        document.getElementById("mobile_icon_right").style.display = "block";
-    } else {
-        document.getElementById("corner_qr").style.display = "block";
-        document.getElementById("mobile_icon_right").style.display = "none";
-    }
-}
