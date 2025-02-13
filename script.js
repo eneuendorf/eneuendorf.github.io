@@ -1,4 +1,4 @@
-const scriptUrl = "https://script.google.com/macros/s/AKfycbzrZ_v6l2Ff18cEcfrPZ29lDqzeufnADUm0ydNNNG2TqyuID3QG3Ey7FhDjbqDt47FiTw/exec";
+const scriptUrl = "https://script.google.com/macros/s/AKfycby_iwC7R5pyRAJUJhwgFRO6XoJumLfthDXepRFZ94BFjn1noWctJVs3jZjVoqnqnsP0-g/exec";
 
 let lastTranslations = null; // Stores the previous translation to avoid unnecessary updates
 
