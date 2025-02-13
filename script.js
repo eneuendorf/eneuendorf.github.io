@@ -33,6 +33,6 @@ async function fetchTranslations() {
     }
 }
 
-// Fetch translations every 10 seconds instead of 3
-setInterval(fetchTranslations, 3000);
+// Fetch translations every X seconds
+setInterval(fetchTranslations, 2000);
 window.onload = fetchTranslations;
