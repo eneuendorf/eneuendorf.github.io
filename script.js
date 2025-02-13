@@ -1,4 +1,4 @@
-const scriptUrl = "https://script.google.com/macros/s/AKfycbyg38uBjS0mJMmjNqWmJsuJ-rass4xaWF_syO4ZY3ydA39CvnoNvdEsQnEMwR4DJIu_bA/exec";
+const scriptUrl = "https://script.google.com/macros/s/AKfycbwCAOwUKG7sHbQR05cmuk0zY7-VM1gGNVg5qGrGXb5h9llEtbHdxlMrNW0ZyQ-L_0iVEA/exec";
 
 let lastTimestamp = 0; // Track last update time
 
