@@ -41,7 +41,7 @@ function startPolling() {
 
     setTimeout(() => {
         fetchTranslations();
-        setInterval(fetchTranslations, 10000); // Continue every 10s
+        setInterval(fetchTranslations, 2000); // Continue every 10s
     }, delay);
 }
 
