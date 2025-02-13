@@ -1,6 +1,6 @@
-const scriptUrl = "https://script.google.com/macros/s/AKfycbyg38uBjS0mJMmjNqWmJsuJ-rass4xaWF_syO4ZY3ydA39CvnoNvdEsQnEMwR4DJIu_bA/exec";
+const scriptUrl = "https://script.google.com/macros/s/NEW_DEPLOYMENT_ID/exec?nocache=" + new Date().getTime();
 
-let lastTimestamp = 0; // Stores last update timestamp
+let lastTimestamp = 0; // Store the last update timestamp
 
 async function fetchTranslations() {
     try {
@@ -20,7 +20,7 @@ async function fetchTranslations() {
         let transcript = document.getElementById("transcript");
         let anchor = document.getElementById("anchor");
 
-        // Update only if timestamp is newer
+        // Only update if a new timestamp is detected
         if (data.timestamp > lastTimestamp) {
             if (currentText.innerHTML.trim() !== "") {
                 transcript.innerHTML += currentText.innerHTML + "<br>";
@@ -34,15 +34,10 @@ async function fetchTranslations() {
     }
 }
 
-// Sync polling to the next 10-second mark
+// Ensure the interval starts after the first fetch
 function startPolling() {
-    const now = Date.now();
-    const delay = 10000 - (now % 10000); // Time until next 10-second mark
-
-    setTimeout(() => {
-        fetchTranslations();
-        setInterval(fetchTranslations, 2000); // Continue every 10s
-    }, delay);
+    fetchTranslations(); // Ensure the first update happens immediately
+    setInterval(fetchTranslations, 10000); // Then continue every 10s
 }
 
 window.onload = startPolling;
