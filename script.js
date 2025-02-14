@@ -1,5 +1,7 @@
 const WS_SERVER = "wss://translation-websocket.onrender.com"; // Your WebSocket server URL
 
+let lastTranslation = ""; // Store last received translation to prevent duplicates
+
 function connectWebSocket() {
     const socket = new WebSocket(WS_SERVER);
 
@@ -16,24 +18,27 @@ function connectWebSocket() {
             const language = urlParams.get("lang") || "Spanish";
 
             if (data.translations && data.translations[language]) {
-                let newText = data.translations[language].replace(/\n/g, "<br>");
+                let newText = data.translations[language].trim().replace(/\n/g, "<br>");
 
-                // Get current transcript and latest text elements
+                // Get elements
                 let currentText = document.getElementById("latestParagraph");
                 let transcript = document.getElementById("transcript");
-                let anchor = document.getElementById("anchor"); // Make sure this exists in your HTML
+                let anchor = document.getElementById("anchor");
 
-                // Append previous translation to transcript before replacing it
-                if (currentText.innerHTML !== newText) {
+                // 🔹 Check if newText is ACTUALLY different from lastTranslation
+                if (newText !== lastTranslation) {
                     if (currentText.innerHTML.trim() !== "") {  
-                        // Prevents blank text from being added
+                        // Store previous translation in transcript before updating
                         transcript.innerHTML += currentText.innerHTML + "<br>";
                     }
-                    
+
                     // Update the latest translation
                     currentText.innerHTML = newText;
+                    
+                    // Update last received translation
+                    lastTranslation = newText;
 
-                    // Scroll to the bottom of the transcript
+                    // Scroll to bottom of transcript
                     if (anchor) {
                         anchor.scrollIntoView({ behavior: "smooth" });
                     }
