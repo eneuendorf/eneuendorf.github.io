@@ -1,57 +1,33 @@
-const scriptUrl = "https://script.google.com/macros/s/AKfycbwCAOwUKG7sHbQR05cmuk0zY7-VM1gGNVg5qGrGXb5h9llEtbHdxlMrNW0ZyQ-L_0iVEA/exec";
+const WS_SERVER = "wss://translation-websocket-server.repl.co"; // Your WebSocket server URL
 
-let lastTimestamp = 0; // Track last update time
+const socket = new WebSocket(WS_SERVER);
 
-async function fetchTranslations() {
+socket.onopen = () => {
+    console.log("✅ Connected to WebSocket server");
+};
+
+socket.onmessage = (event) => {
     try {
-        console.log("Fetching new translations...");
+        console.log("📩 Received new translation:", event.data);
 
+        const data = JSON.parse(event.data);
         const urlParams = new URLSearchParams(window.location.search);
-        const language = urlParams.get("lang") || "spanish";
+        const language = urlParams.get("lang") || "spanish"; // Default to Spanish
 
-        // Force a fresh response by appending a timestamp (prevents caching)
-        const response = await fetch(scriptUrl + "?nocache=" + Date.now(), { cache: "no-store" });
-        if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
-
-        const data = await response.json();
-
-        if (!data.translations || !data.translations[language]) {
-            console.error("Error: Translation data missing for", language);
-            return;
-        }
-
-        let newText = data.translations[language].replace(/\n/g, "<br>");
-        let currentText = document.getElementById("latestParagraph");
-        let transcript = document.getElementById("transcript");
-        let anchor = document.getElementById("anchor");
-
-        // Only update if the timestamp is newer
-        if (data.timestamp > lastTimestamp) {
-            console.log("New translation detected, updating page...");
-
-            if (currentText.innerHTML.trim() !== "") {
-                transcript.innerHTML += currentText.innerHTML + "<br>";
-            }
-            currentText.innerHTML = newText;
-            anchor.scrollIntoView({ behavior: "smooth" });
-
-            lastTimestamp = data.timestamp; // Store latest timestamp
-
-            // Debugging: Update title with last update time
-            document.title = "Updated at " + new Date().toLocaleTimeString();
-        } else {
-            console.log("No new updates.");
+        if (data.translations && data.translations[language]) {
+            let newText = data.translations[language].replace(/\n/g, "<br>");
+            document.getElementById("latestParagraph").innerHTML = newText;
         }
     } catch (error) {
-        console.error("Error fetching translations:", error);
+        console.error("❌ Error processing WebSocket message:", error);
     }
-}
+};
 
-// Ensure the first update happens immediately
-async function startPolling() {
-    await fetchTranslations(); // Fetch immediately on load
-    setInterval(fetchTranslations, 10000); // Then continue every 10 seconds
-}
+socket.onerror = (error) => {
+    console.error("⚠️ WebSocket error:", error);
+};
 
-// Start polling when page loads
-window.onload = startPolling;
+socket.onclose = () => {
+    console.warn("⚠️ WebSocket disconnected. Reconnecting in 5 seconds...");
+    setTimeout(() => location.reload(), 5000); // Auto-reconnect if disconnected
+};
