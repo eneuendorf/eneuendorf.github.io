@@ -12,7 +12,7 @@ socket.onmessage = (event) => {
 
         const data = JSON.parse(event.data);
         const urlParams = new URLSearchParams(window.location.search);
-        const language = urlParams.get("lang") || "spanish"; // Default to Spanish
+        const language = urlParams.get("lang") || "Spanish"; // Match language case in titles
 
         if (data.translations && data.translations[language]) {
             let newText = data.translations[language].replace(/\n/g, "<br>");
