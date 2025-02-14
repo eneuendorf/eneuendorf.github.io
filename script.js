@@ -23,8 +23,18 @@ function connectWebSocket() {
                 let transcript = document.getElementById("transcript");
 
                 // Append previous translation to transcript before replacing it
-                if (currentText.innerHTML.trim() !== "") {
-                    transcript.innerHTML += currentText.innerHTML + "<br>"; 
+                if (currentText.innerHTML !== newText) {
+                    if (currentText.innerHTML.trim() !== "") {  // Prevents leading <br>
+                        document.getElementById("transcript").innerHTML += currentText.innerHTML + "<br>";
+                    }
+                        currentText.innerHTML = newText;
+                        anchor.scrollIntoView({behavior:"smooth"});
+                    } else {
+                        console.log("same");
+                    } 
+                    } catch (error) {
+                        console.error("Error fetching translations:", error);
+                    }
                 }
 
                 // Update the latest translation
