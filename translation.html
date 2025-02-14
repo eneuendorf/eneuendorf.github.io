@@ -46,7 +46,9 @@
         // Set the page title dynamically
         document.title = titles[language] || "Translation";
       // Fetch translations every 3 seconds
-      window.onload = () => fetchTranslations(language); 
+        window.onload = () => {
+            console.log("✅ Page loaded. WebSocket will handle translations.");
+        };
     </script>
 </body>
 </html>
