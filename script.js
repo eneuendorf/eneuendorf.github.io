@@ -17,28 +17,29 @@ function connectWebSocket() {
 
             if (data.translations && data.translations[language]) {
                 let newText = data.translations[language].replace(/\n/g, "<br>");
-                
+
                 // Get current transcript and latest text elements
                 let currentText = document.getElementById("latestParagraph");
                 let transcript = document.getElementById("transcript");
+                let anchor = document.getElementById("anchor"); // Make sure this exists in your HTML
 
                 // Append previous translation to transcript before replacing it
                 if (currentText.innerHTML !== newText) {
-                    if (currentText.innerHTML.trim() !== "") {  // Prevents leading <br>
-                        document.getElementById("transcript").innerHTML += currentText.innerHTML + "<br>";
+                    if (currentText.innerHTML.trim() !== "") {  
+                        // Prevents blank text from being added
+                        transcript.innerHTML += currentText.innerHTML + "<br>";
                     }
-                        currentText.innerHTML = newText;
-                        anchor.scrollIntoView({behavior:"smooth"});
-                    } else {
-                        console.log("same");
-                    } 
-                    } catch (error) {
-                        console.error("Error fetching translations:", error);
-                    }
-                }
+                    
+                    // Update the latest translation
+                    currentText.innerHTML = newText;
 
-                // Update the latest translation
-                currentText.innerHTML = newText;
+                    // Scroll to the bottom of the transcript
+                    if (anchor) {
+                        anchor.scrollIntoView({ behavior: "smooth" });
+                    }
+                } else {
+                    console.log("📌 No new translation, skipping update.");
+                }
             }
         } catch (error) {
             console.error("❌ Error processing WebSocket message:", error);
