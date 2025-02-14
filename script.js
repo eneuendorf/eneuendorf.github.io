@@ -1,4 +1,4 @@
-const WS_SERVER = "wss://translation-websocket.onrender.com"; // Replace with your actual Render WebSocket URL
+const WS_SERVER = "wss://translation-websocket.onrender.com"; // Your WebSocket server URL
 
 function connectWebSocket() {
     const socket = new WebSocket(WS_SERVER);
@@ -17,7 +17,18 @@ function connectWebSocket() {
 
             if (data.translations && data.translations[language]) {
                 let newText = data.translations[language].replace(/\n/g, "<br>");
-                document.getElementById("latestParagraph").innerHTML = newText;
+                
+                // Get current transcript and latest text elements
+                let currentText = document.getElementById("latestParagraph");
+                let transcript = document.getElementById("transcript");
+
+                // Append previous translation to transcript before replacing it
+                if (currentText.innerHTML.trim() !== "") {
+                    transcript.innerHTML += currentText.innerHTML + "<br>"; 
+                }
+
+                // Update the latest translation
+                currentText.innerHTML = newText;
             }
         } catch (error) {
             console.error("❌ Error processing WebSocket message:", error);
