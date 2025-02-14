@@ -1,4 +1,4 @@
-const WS_SERVER = "wss://translation-websocket.repl.co"; // Replace with your actual Render WebSocket URL
+const WS_SERVER = "wss://translation-websocket.onrender.com"; // Replace with your actual Render WebSocket URL
 
 function connectWebSocket() {
     const socket = new WebSocket(WS_SERVER);
