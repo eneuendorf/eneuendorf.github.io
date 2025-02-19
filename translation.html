@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Live Translation</title>
 </head>
-<body>
-    <script src="NoSleep.js"></script>
-    
+<body>    
     <img src="qr.png" id="corner_qr" class="clickable" onclick="showQR()">
     <img src="mobile_icon.jpg" id="mobile_icon_right" class="mobile_icon_right clickable" onclick="showQR()">  
     <div class="currentText">
@@ -54,7 +52,37 @@
     </script>
 
     <script>
-        noSleep.enable(); // keep the screen on!
+        let wakeLock = null;
+
+        // Function to request a wake lock
+        async function requestWakeLock() {
+            try {
+                if ('wakeLock' in navigator) {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Wake Lock is active');
+
+                    // Listen for when the lock is released (e.g., due to inactivity)
+                    wakeLock.addEventListener('release', () => {
+                        console.log('Wake Lock was released');
+                    });
+                } else {
+                    console.log('Wake Lock API not supported on this browser.');
+                }
+            } catch (err) {
+                console.error(`Wake Lock request failed: ${err.message}`);
+            }
+        }
+
+        // Re-enable wake lock when visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && wakeLock === null) {
+                requestWakeLock();
+            }
+        });
+
+        // Activate wake lock on user interaction
+        document.addEventListener('click', requestWakeLock);
+        document.addEventListener('touchstart', requestWakeLock);
     </script>
 </body>
 </html>
